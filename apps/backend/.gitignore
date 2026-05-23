@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env*.local
+!.env.example
+
+# Prisma generated client
+node_modules/.prisma/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS / Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/*
+!.vscode/settings.json
+
+# Misc
+.cache/
+coverage/
