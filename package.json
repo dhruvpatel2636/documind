@@ -1,5 +1,5 @@
 {
-  "name": "rag-chatbot-platform",
+  "name": "documind",
   "version": "1.0.0",
   "private": true,
   "workspaces": [
@@ -15,7 +15,7 @@
     "db:generate": "npm run db:generate --workspace=apps/frontend && npm run db:generate --workspace=apps/backend",
     "db:migrate": "npm run db:migrate --workspace=apps/backend",
     "db:push": "npm run db:push --workspace=apps/backend",
-    "postinstall": "npm run db:generate"
+    "postinstall": "npm run db:generate --workspace=apps/frontend"
   },
   "devDependencies": {
     "@types/react": "^19.2.15",
