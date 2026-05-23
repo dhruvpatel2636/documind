@@ -7,8 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "RAG Chatbot Platform",
-  description: "Chat with your documents using AI-powered retrieval",
+  title: "DocuMind — Chat with your documents",
+  description: "AI-powered RAG platform. Upload PDFs, ask questions, get answers cited from your own documents.",
 };
 
 export default function RootLayout({

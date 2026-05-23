@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MessageSquare, BookOpen, Settings, Bot, LogOut, Plus, Sparkles } from "lucide-react";
+import { MessageSquare, BookOpen, Settings, LogOut, Plus, BrainCircuit } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -24,12 +24,12 @@ export function Sidebar() {
     <aside className="flex h-full w-64 flex-col border-r bg-card">
       {/* ── Brand ─────────────────────────────────── */}
       <div className="flex items-center gap-3 px-5 py-5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-sm">
-          <Sparkles className="h-5 w-5 text-primary-foreground" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/70 shadow-md shadow-primary/20">
+          <BrainCircuit className="h-5 w-5 text-primary-foreground" />
         </div>
         <div>
-          <p className="text-base font-bold leading-none tracking-tight">DocChat</p>
-          <p className="mt-0.5 text-[11px] text-muted-foreground">AI Knowledge Base</p>
+          <p className="text-base font-bold leading-none tracking-tight">DocuMind</p>
+          <p className="mt-0.5 text-[11px] text-muted-foreground">Chat with your docs</p>
         </div>
       </div>
 

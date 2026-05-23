@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Sparkles, Mail, Loader2, ArrowRight, CheckCircle2 } from "lucide-react";
+import { BrainCircuit, Mail, Loader2, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -44,10 +44,10 @@ export function SignInForm() {
     <div className="w-full max-w-md space-y-6">
       {/* Brand */}
       <div className="text-center">
-        <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/30">
-          <Sparkles className="h-7 w-7 text-primary-foreground" />
+        <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/70 shadow-lg shadow-primary/30">
+          <BrainCircuit className="h-7 w-7 text-primary-foreground" />
         </div>
-        <h1 className="text-2xl font-bold tracking-tight">Welcome to DocChat</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Welcome to DocuMind</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Sign in to start chatting with your documents
         </p>
