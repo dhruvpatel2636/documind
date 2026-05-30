@@ -1,4 +1,4 @@
-# RAG Chatbot Platform
+# DocuMind
 
 A production-ready AI SaaS platform that lets users upload documents (PDFs, text, URLs) and chat with an AI that answers questions strictly based on their uploaded data using Retrieval-Augmented Generation (RAG).
 
@@ -13,7 +13,7 @@ A production-ready AI SaaS platform that lets users upload documents (PDFs, text
 ## Project Structure
 
 ```
-rag-chatbot-platform/
+documind/
 ├── apps/
 │   ├── frontend/          # Next.js app
 │   │   ├── src/
