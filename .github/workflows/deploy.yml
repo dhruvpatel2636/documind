@@ -18,7 +18,7 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - run: npm install --ignore-scripts
-      - run: npx --prefix apps/frontend next lint
+      - run: npm run lint
         working-directory: apps/frontend
 
   # ─── Type Check Backend ──────────────────────────────────────────
