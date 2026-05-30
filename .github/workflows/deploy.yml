@@ -59,11 +59,28 @@ jobs:
       - run: npm install -g vercel@latest
       - name: Pull Vercel environment
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Debug pulled env
+        run: |
+          echo "=== .vercel directory ==="
+          ls -la .vercel/ || echo "(no .vercel dir at repo root)"
+          ls -la apps/frontend/.vercel/ || echo "(no .vercel dir at apps/frontend)"
+          echo "=== env file presence (root) ==="
+          if [ -f .vercel/.env.production.local ]; then
+            echo "Found at root. Keys present:"
+            grep -oE '^[A-Z_]+' .vercel/.env.production.local | sort -u
+          fi
+          echo "=== env file presence (apps/frontend) ==="
+          if [ -f apps/frontend/.vercel/.env.production.local ]; then
+            echo "Found at apps/frontend. Keys present:"
+            grep -oE '^[A-Z_]+' apps/frontend/.vercel/.env.production.local | sort -u
+          fi
       - name: Build
         run: |
           set -a
-          source .vercel/.env.production.local
+          [ -f .vercel/.env.production.local ] && source .vercel/.env.production.local
+          [ -f apps/frontend/.vercel/.env.production.local ] && source apps/frontend/.vercel/.env.production.local
           set +a
+          echo "DATABASE_URL set: $([ -n "$DATABASE_URL" ] && echo yes || echo NO)"
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
