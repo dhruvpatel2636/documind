@@ -36,7 +36,7 @@ export function ChatWindow() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [docsLoading, setDocsLoading] = useState(false);
+  const [docsLoading, setDocsLoading] = useState(true);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -45,7 +45,6 @@ export function ChatWindow() {
 
   // Fetch documents for the filter panel
   useEffect(() => {
-    setDocsLoading(true);
     apiGet<{ documents: Document[] }>("/documents")
       .then(({ documents }) => setDocuments(documents.filter((d) => d.status === "READY")))
       .catch(() => {})

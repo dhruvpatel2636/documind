@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { BookOpen } from "lucide-react";
 import { DocumentUpload } from "@/components/documents/DocumentUpload";
 import { DocumentList } from "@/components/documents/DocumentList";
@@ -13,26 +13,22 @@ export default function KnowledgeBasePage() {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchDocuments = async () => {
-    try {
-      const { documents } = await apiGet<{ documents: Document[] }>(
-        "/documents",
-      );
-      setDocuments(documents);
-    } catch {
-      toast({
-        title: "Error",
-        description: "Failed to load documents",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchDocuments = useCallback(() => {
+    return apiGet<{ documents: Document[] }>("/documents")
+      .then(({ documents }) => setDocuments(documents))
+      .catch(() =>
+        toast({
+          title: "Error",
+          description: "Failed to load documents",
+          variant: "destructive",
+        }),
+      )
+      .finally(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
     fetchDocuments();
-  }, []);
+  }, [fetchDocuments]);
 
   const handleUploaded = (doc: Document) => {
     setDocuments((prev) => [doc, ...prev]);

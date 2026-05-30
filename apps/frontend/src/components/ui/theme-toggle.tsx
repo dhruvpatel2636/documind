@@ -3,14 +3,19 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+// Returns true once hydrated on the client, false during SSR — avoids
+// hydration mismatch without setState-in-effect.
+const subscribe = () => () => {};
+function useMounted() {
+  return useSyncExternalStore(subscribe, () => true, () => false);
+}
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
 
-  // Avoid hydration mismatch — only render after mount
-  useEffect(() => setMounted(true), []);
   if (!mounted) return <div className="h-8 w-8" />;
 
   const isDark = theme === "dark";
