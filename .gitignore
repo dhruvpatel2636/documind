@@ -75,3 +75,4 @@ coverage/
 .vercel
 *.pem
 .eslintcache
+.env*
