@@ -10,6 +10,25 @@ export interface Document {
   _count?: { chunks: number };
 }
 
+export interface DocumentChunk {
+  id: string;
+  chunkIndex: number;
+  pageNumber: number | null;
+  content: string;
+  tokenCount: number | null;
+}
+
+export interface ChunksResponse {
+  chunks: DocumentChunk[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+    hasMore: boolean;
+  };
+}
+
 export interface ChatSource {
   documentId: string;
   documentName: string;
