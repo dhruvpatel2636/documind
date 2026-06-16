@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, Globe, Trash2, RefreshCw, CheckCircle, XCircle, Clock } from "lucide-react";
+import { Eye, FileText, Globe, Trash2, RefreshCw, CheckCircle, XCircle, Clock } from "lucide-react";
 import { Document } from "@/types";
 import { Button } from "@/components/ui/button";
 import { apiDelete } from "@/lib/api";
@@ -19,6 +19,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
+import { DocumentPreview } from "./DocumentPreview";
 
 interface DocumentListProps {
   documents: Document[];
@@ -80,6 +81,7 @@ function DeleteConfirm({ name, onConfirm, disabled }: { name: string; onConfirm:
 
 export function DocumentList({ documents, onDelete, onRefresh }: DocumentListProps) {
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [previewDoc, setPreviewDoc] = useState<Document | null>(null);
 
   const handleDelete = async (id: string, name: string) => {
     setDeleting(id);
@@ -153,6 +155,17 @@ export function DocumentList({ documents, onDelete, onRefresh }: DocumentListPro
                 {status.label}
               </div>
 
+              {/* Preview */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 shrink-0 text-muted-foreground hover:text-foreground"
+                onClick={() => setPreviewDoc(doc)}
+                aria-label={`Preview ${doc.name}`}
+              >
+                <Eye className="h-4 w-4" />
+              </Button>
+
               {/* Delete */}
               <DeleteConfirm
                 name={doc.name}
@@ -163,6 +176,14 @@ export function DocumentList({ documents, onDelete, onRefresh }: DocumentListPro
           );
         })}
       </div>
+
+      {previewDoc && (
+        <DocumentPreview
+          document={previewDoc}
+          open={true}
+          onOpenChange={(open) => !open && setPreviewDoc(null)}
+        />
+      )}
     </div>
   );
 }
