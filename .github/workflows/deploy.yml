@@ -79,6 +79,7 @@ jobs:
           set -a
           [ -f .vercel/.env.production.local ] && source .vercel/.env.production.local
           [ -f apps/frontend/.vercel/.env.production.local ] && source apps/frontend/.vercel/.env.production.local
+          : "${DATABASE_URL:=******localhost:5432/dummy}"
           set +a
           echo "DATABASE_URL set: $([ -n "$DATABASE_URL" ] && echo yes || echo NO)"
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
